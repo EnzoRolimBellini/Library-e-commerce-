@@ -36,19 +36,28 @@ public class AccountService implements IAccountService {
 		if(containAccountValue.isPresent()) {
 			Account a = containAccountValue.get();
 			if(a.getPassword() == password) {
-				if(a.verifyName(name) || name != null || name != a.getName())  {
-					repository.save(a);
+			
+				if(a.verifyName(name) &&  name != a.getName())  {
+					 repository.save(a);
+				}else {
+				     throw  new IllegalArgumentException();
 				}
-				if(a.verifyEmail(email) || email != null || email != a.getEmail()) {
-					repository.save( a);
+				if(a.verifyEmail(email) && email != a.getEmail()) {
+					 repository.save( a);
+				}else {
+					 throw  new IllegalArgumentException();
 				}
 			
-				if(a.verifyPhone(phone) || phone != null || phone != a.getPhone()) {
+				if(a.verifyPhone(phone)  &&  phone != a.getPhone()) {
 					repository.save(a);
+				}else {
+					 throw  new IllegalArgumentException();
 				}
 			
-				if(a.verifyPassword(newPassword) || newPassword != null || newPassword != a.getPassword()) {
+				if(a.verifyPassword(newPassword) && newPassword != a.getPassword()) {
 					repository.save(a);
+				}else {
+					 throw  new IllegalArgumentException();
 				}
 			}else {
 				throw new RuntimeException("A senha informada está incorreta");

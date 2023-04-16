@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import jakarta.persistence.Access;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,6 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 
@@ -22,8 +25,8 @@ public class Books   {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idBooks")
-	 private int idBooks;
+	@Column(name = "idBook")
+	 private int idBook;
 	@Column(name = "numberPages")
 	 private int numberPages;
 	@Column(name = "genre")
@@ -38,13 +41,16 @@ public class Books   {
 	@Column(name = "price")
 	 private double price;
 	@Column(name = "notes")
-	 private List<String> notes = new ArrayList<>();
+	 private List<String> notes;
 	@Column(name = "title")
 	 private String title;
 	@Column(name = "isbn10")
-	 private String[] isbn10 = new String[13];
+	 private String isbn10;
 	@Column(name = "dimensions")
-	 private int[] dimensions = new int[3];
+	 private String dimensions;
+	@ManyToMany(mappedBy = "arrayBooks")
+	 private List<Account> arrayAccounts;
+	
 	
 	 
 	 public Books(int numberPages, Genre genre, String editor, String date, double price, String title){
@@ -56,31 +62,92 @@ public class Books   {
 		 
 	 }
 	 
-	 public int getNumberPages() {
-		 return numberPages;
-	 }
-	 
-	 public String getTitle() {
-		 return this.title;
-	 }
-	 
-	 public Genre getGenre() {
-		 return this.genre;
-	 }
-	 
-	 public String getEditor() {
-		 return this.editor;
-	 }
-	 
-	 public String getDate() {
-		 return this.date;
-	 }
-	 
-	 public double getPrice() {
-		 return this.price;
-	 }
-	 
-	 public void createNote() {
+	
+	 public int getIdBooks() {
+		return idBook;
+	}
+
+	public void setIdBooks(int idBooks) {
+		this.idBook = idBooks;
+	}
+
+	public int getNumberPages() {
+		return numberPages;
+	}
+
+	public void setNumberPages(int numberPages) {
+		this.numberPages = numberPages;
+	}
+
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
+
+	public String getEditor() {
+		return editor;
+	}
+
+	public void setEditor(String editor) {
+		this.editor = editor;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getIsbn10() {
+		return isbn10;
+	}
+
+	public void setIsbn10(String isbn10) {
+		this.isbn10 = isbn10;
+	}
+
+	public String getDimensions() {
+		return dimensions;
+	}
+
+	public void setDimensions(String dimensions) {
+		this.dimensions = dimensions;
+	}
+
+	public void setNotes(List<String> notes) {
+		this.notes = notes;
+	}
+
+	public void createNote() {
 		 
 			 String noteEvaluation = null;
 		
@@ -135,6 +202,6 @@ public class Books   {
 		this.notes.set(currentIndex, newText);	 
 	 }
 	 
-		 
+	
 
 }

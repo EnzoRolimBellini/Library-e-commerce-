@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 import java.util.ArrayList;
@@ -20,12 +23,14 @@ import java.util.List;
 public class Account {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @Column(name ="idAccount")
+	 @Column(name ="idaccount")
 	 private int idAccount;
-	 @Column(name = "idBooks")
-	 private int idBooks;
-	 @Column(name = "arrayBooks")
-	 private List<Books> arrayBooks =  new ArrayList<>();
+	 @ManyToMany
+	 @JoinTable(name = "accounts_books",
+	            joinColumns = @JoinColumn(name = "accounts_fk", referencedColumnName = "idAccount" ),
+	            inverseJoinColumns = @JoinColumn(name = "books_fk", referencedColumnName = "idBook")
+               )	           
+	 private List<Books> arrayBooks;
 	 @Column(name = "name")
 	 private String name;
 	 @Column(name ="email")
