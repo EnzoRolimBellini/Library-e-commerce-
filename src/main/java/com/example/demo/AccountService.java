@@ -10,7 +10,7 @@ import com.example.demo.model.Account;
 @Service
 public class AccountService implements IAccountService {
 	
-	AccountCreation ca = new AccountCreation();
+    private AccountValidation av = new AccountValidation();
 	
 	@Autowired
 	private AccountRepository repository;
@@ -22,7 +22,10 @@ public class AccountService implements IAccountService {
 
 	@Override
 	public Account create(Account a, String name, String email, String password, String phone) {
-		a = ca.AccountCreation(name, email, password, phone);
+		boolean value = av.accountverification(name, email, password, phone);
+		if(value == false) {
+			throw new RuntimeException("Os valores postos para criar a conta não são válidos");
+		}
 		return repository.save(a);
 	}
 

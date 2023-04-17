@@ -42,16 +42,20 @@ public class Account {
 	 @Column(name ="phone")
 	 private String phone; 
 	 
+	 //método construtor
+	public Account(String name, String email, String password, double balance, String phone) {
+		this.name= name;
+		this.email = email;
+		this.password = password;
+		this.balance = balance;
+		this.phone = phone;
+	} 
+	 
 	 // métodos de set para os dados dos usuários
 	public void setName( String name) {
 			this.name = name;
 	}
 	 
-	
-	public int getAccount() {
-		return this.idAccount;
-	}
-	  
 	public void setEmail(String email) {
 		Boolean regexGmailCom = email.contains("@gmail.com");
 		Boolean regexGmailComBr = email.contains("@gmail.com.br");
@@ -91,6 +95,11 @@ public class Account {
 	 // fim dos métodos de set
 	 
 	 //inicio dos metodos get
+	 
+	    public int getAccount() {
+			return this.idAccount;
+		}   
+	 
 	 	public String getName() {
 	 		return this.name;
 	 	}
