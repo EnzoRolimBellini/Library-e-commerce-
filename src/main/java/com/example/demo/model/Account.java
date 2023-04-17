@@ -30,7 +30,7 @@ public class Account {
 	            joinColumns = @JoinColumn(name = "accounts_fk", referencedColumnName = "idAccount" ),
 	            inverseJoinColumns = @JoinColumn(name = "books_fk", referencedColumnName = "idBook")
                )	           
-	 private List<Books> arrayBooks;
+	 private List<Book> arrayBooks;
 	 @Column(name = "name")
 	 private String name;
 	 @Column(name ="email")
@@ -188,9 +188,9 @@ public class Account {
 		
 		
 	//método que retorna em ordem alfabética a lista de livros do úsuario
-		public HashMap<Books, String> getLibrary(Books l) {
+		public HashMap<Book, String> getLibrary(Book l) {
 			
-			HashMap<Books, String> books = new HashMap<>();
+			HashMap<Book, String> books = new HashMap<>();
 			
 			if(l.getTitle() != null && l.getGenre() != null && l.getEditor() != null && l.getDate() != null && l.getPrice() != 0) {		
 					arrayBooks.add(l);
@@ -199,7 +199,7 @@ public class Account {
 			}
 			
 			for(int i = 0; i < arrayBooks.size(); i++) {
-				Books book	=	arrayBooks.get(i);
+				Book book	=	arrayBooks.get(i);
 				String firstLetter = String.valueOf(book.getTitle().charAt(0));
 				books.put(book, firstLetter);
 			}

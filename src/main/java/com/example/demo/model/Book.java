@@ -21,12 +21,14 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "books")
-public class Books   {
+public class Book   {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idBook")
 	 private int idBook;
+	@Column(name = "author")
+	 private String author;
 	@Column(name = "numberPages")
 	 private int numberPages;
 	@Column(name = "genre")
@@ -53,16 +55,25 @@ public class Books   {
 	
 	
 	 
-	 public Books(int numberPages, Genre genre, String editor, String date, double price, String title){
+	 public Book(int numberPages, String author, Genre genre, String editor, String date, double price, String title){
 		 this.numberPages = numberPages;
+		 this.author = author;
 		 this.genre = genre;
 		 this.editor = editor;
 		 this.date = date;
 		 this.title = title;
 		 
 	 }
+	  
 	 
-	
+	 public String getAuthor() {
+		 return author;
+	 }
+	 
+	 public void setAuthor(String author) {
+		 this.author = author;
+	 }
+	 
 	 public int getIdBooks() {
 		return idBook;
 	}
