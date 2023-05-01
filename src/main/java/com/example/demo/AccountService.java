@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +36,9 @@ public class AccountService implements IAccountService {
 	
 
 	@Override
-	public void update(Integer id, String name, String email, String phone, String password, String newPassword) {
+	public void update(UUID id, String name, String email, String phone, String password, String newPassword) {
 		
-		Optional<Account>containAccountValue =  repository.findById(id); 
+		Optional<Account> containAccountValue =  repository.findById(id); 
 		
 		if(containAccountValue.isPresent()) {
 			Account a = containAccountValue.get();
@@ -77,7 +79,7 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(UUID id) {
 		 repository.deleteById(id);
 	}
 	

@@ -1,6 +1,8 @@
 package com.example.demo;
 
 
+import java.time.LocalDateTime;
+
 import com.example.demo.model.Genre;
 
 public class AccountBookValidation {
@@ -10,7 +12,6 @@ public class AccountBookValidation {
 	private String regexName = "^[a-zA-Z\\s]+$";
 	private String regexPassword = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$";
 	private String regexPhone = ".{9,}"; 
-	private String regexDate = " ^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
     private Boolean validation;
    
     public boolean accountverification(String name, String email, String password, String phone, double balance) {
@@ -25,8 +26,8 @@ public class AccountBookValidation {
     	return validation;
     }
     
-    public boolean bookverification(int numberPages, String author, Genre genre, String editor, String date, double price, String title) {
-    	if(numberPages > 0 && author.matches(regexName) && genre != null && editor.matches(regexName) && date.matches(regexDate) && price > 0 && title.matches(regexName) && !title.isBlank() ) {
+    public boolean bookverification(int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title) {
+    	if(numberPages > 0 && author.matches(regexName) &&  editor.matches(regexName) && price > 0 && title.matches(regexName) && !title.isBlank() ) {
     		this.validation = true;
     	}else {
     		this.validation = false;

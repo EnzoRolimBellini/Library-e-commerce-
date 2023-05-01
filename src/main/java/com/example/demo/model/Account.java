@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.util.Scanner;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,22 +25,23 @@ public class Account {
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name ="idaccount")
-	 private int idAccount;
+	 private UUID idAccount;
+	 @Column(name = "books_fk", length = 300)
 	 @ManyToMany
 	 @JoinTable(name = "accounts_books",
 	            joinColumns = @JoinColumn(name = "accounts_fk", referencedColumnName = "idAccount" ),
 	            inverseJoinColumns = @JoinColumn(name = "books_fk", referencedColumnName = "idBook")
                )	           
 	 private List<Book> arrayBooks;
-	 @Column(name = "name")
+	 @Column(name = "name", nullable = false)
 	 private String name;
-	 @Column(name ="email")
+	 @Column(name ="email", nullable = false, unique = true)
 	 private String email;
-	 @Column(name="password")
+	 @Column(name="password", nullable = false)
 	 private String password;
-	 @Column(name = "balance")
+	 @Column(name = "balance", nullable = false)
 	 private double balance;
-	 @Column(name ="phone")
+	 @Column(name ="phone", nullable = false, unique = true)
 	 private String phone; 
 	 
 	 //método construtor
@@ -52,6 +54,11 @@ public class Account {
 	} 
 	 
 	 // métodos de set para os dados dos usuários
+	
+	public void setAccount(UUID idAccount) {
+		this.idAccount = idAccount;
+	}
+	
 	public void setName( String name) {
 			this.name = name;
 	}
@@ -96,7 +103,7 @@ public class Account {
 	 
 	 //inicio dos metodos get
 	 
-	    public int getAccount() {
+	    public UUID getAccount() {
 			return this.idAccount;
 		}   
 	 

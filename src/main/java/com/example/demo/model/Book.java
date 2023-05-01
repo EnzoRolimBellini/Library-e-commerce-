@@ -1,9 +1,11 @@
 package com.example.demo.model;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
@@ -26,36 +28,37 @@ public class Book   {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idBook")
-	 private int idBook;
-	@Column(name = "author")
+	 private UUID idBook;
+	@Column(name = "author", nullable = false)
 	 private String author;
-	@Column(name = "numberPages")
+	@Column(name = "numberPages", nullable = false)
 	 private int numberPages;
-	@Column(name = "genre")
+	@Column(name = "genre", nullable = false)
 	@Enumerated(EnumType.STRING)
 	 private Genre genre;
-	@Column(name = "editor")
+	@Column(name = "editor", nullable = false)
 	 private String editor;
-	@Column(name = "date")
-	 private String date;
+	@Column(name = "date", nullable = false)
+	 private LocalDateTime date;
 	@Column(name = "description")
 	 private String description;
-	@Column(name = "price")
+	@Column(name = "price", nullable = false)
 	 private double price;
 	@Column(name = "notes")
 	 private List<String> notes;
-	@Column(name = "title")
+	@Column(name = "title", nullable = false)
 	 private String title;
-	@Column(name = "isbn10")
+	@Column(name = "isbn10", nullable = false, unique = true, length = 10)
 	 private String isbn10;
 	@Column(name = "dimensions")
 	 private String dimensions;
+	@Column(name = "fk_accounts")
 	@ManyToMany(mappedBy = "arrayBooks")
 	 private List<Account> arrayAccounts;
 	
 	
 	 
-	 public Book(int numberPages, String author, Genre genre, String editor, String date, double price, String title){
+	 public Book(int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title){
 		 this.numberPages = numberPages;
 		 this.author = author;
 		 this.genre = genre;
@@ -74,11 +77,11 @@ public class Book   {
 		 this.author = author;
 	 }
 	 
-	 public int getIdBooks() {
+	 public UUID getIdBooks() {
 		return idBook;
 	}
 
-	public void setIdBooks(int idBooks) {
+	public void setIdBooks(UUID idBooks) {
 		this.idBook = idBooks;
 	}
 
@@ -106,11 +109,11 @@ public class Book   {
 		this.editor = editor;
 	}
 
-	public String getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 

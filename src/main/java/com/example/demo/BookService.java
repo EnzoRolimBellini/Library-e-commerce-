@@ -1,10 +1,14 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Account;
 import com.example.demo.model.Book;
 import com.example.demo.model.Genre;
 
@@ -12,6 +16,7 @@ import com.example.demo.model.Genre;
 public class BookService implements IBookService {
 	
 	private AccountBookValidation av = new AccountBookValidation();
+	
     
 	@Autowired
 	private BookRepository repository;
@@ -22,7 +27,7 @@ public class BookService implements IBookService {
 	}
 
 	@Override
-	public Book create(int numberPages, String author, Genre genre, String editor, String date, double price, String title) {
+	public Book create(int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title) {
 		boolean value = av.bookverification(numberPages, author, genre, editor, date, price, title);
 		if(value == false) {
 			throw new RuntimeException("Os dados do livro não estão corretos");
@@ -32,15 +37,17 @@ public class BookService implements IBookService {
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+	public void update(UUID idBook,int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title ) {
+			Optional<Book> containBookValue = repository.findById(idBook);
+
+		
 		
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(UUID idBook) {
 		
-		repository.deleteById(id);
+		repository.deleteById(idBook);
 		
 	}
     
