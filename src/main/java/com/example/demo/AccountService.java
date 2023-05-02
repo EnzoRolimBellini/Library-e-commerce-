@@ -16,7 +16,8 @@ public class AccountService implements IAccountService {
    
 	
 	@Autowired
-	private AccountRepository repository;
+	AccountRepository repository;
+
 
 	@Override
 	public List<Account> find() {
