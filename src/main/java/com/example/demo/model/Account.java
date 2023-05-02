@@ -47,15 +47,7 @@ public class Account {
 	 @Column(name = "date", nullable = false)
 	 private LocalDateTime registrationDate;
 	 
-	 //método construtor
-	public Account(String name, String email, String password, double balance, String phone) {
-		this.name= name;
-		this.email = email;
-		this.password = password;
-		this.balance = balance;
-		this.phone = phone;
-	} 
-	 
+	
 	 // getters e setters
 	
 	public UUID getIdAccount() {

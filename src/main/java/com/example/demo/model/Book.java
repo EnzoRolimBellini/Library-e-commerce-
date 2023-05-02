@@ -102,7 +102,7 @@ public class Book   {
 		return registrationDate;
 	}
 
-	public void setDate(LocalDateTime registrationDate) {
+	public void setRegistrationDate(LocalDateTime registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

@@ -15,7 +15,7 @@ import com.example.demo.model.Genre;
 @Service
 public class BookService implements IBookService {
 	
-	private AccountBookValidation av = new AccountBookValidation();
+	
 	
     
 	@Autowired
@@ -27,12 +27,13 @@ public class BookService implements IBookService {
 	}
 
 	@Override
-	public Book create(int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title) {
-		boolean value = av.bookverification(numberPages, author, genre, editor, registrationDate, price, title);
-		if(value == false) {
-			throw new RuntimeException("Os dados do livro não estão corretos");
-		}
-		Book book = new Book();
+	public Book create(Book book) {
+		
+		AccountBookValidation av = new AccountBookValidation();
+		boolean value = av.bookValidation(book);
+		if(!value) {
+			throw new IllegalArgumentException();
+		} 
 		return repository.save(book);
 	}
 

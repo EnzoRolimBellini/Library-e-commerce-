@@ -1,9 +1,12 @@
 package com.example.demo;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +30,8 @@ public class BookController {
 	public ResponseEntity<Object> saveBook(@RequestBody @Valid BookDto bookDto){
 		var book = new Book();
 		BeanUtils.copyProperties(bookDto,book);
-		
-		return null;
-		
+		book.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
+		return ResponseEntity.status(HttpStatus.CREATED).body(bookService.create(book));
 	}
 	
 }

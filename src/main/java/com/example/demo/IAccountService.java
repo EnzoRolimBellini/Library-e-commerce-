@@ -1,17 +1,17 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.model.Account;
-import com.example.demo.model.Book;
+
 
 public interface IAccountService {
 	List<Account> find();
 
 	
-	Account create( String name, String email, String password, double balance, String phone);
+	Account create( Account account);
 	void update(UUID id, String name, String email, String phone, String password, String newPassword);
 	void delete(UUID id);
 }

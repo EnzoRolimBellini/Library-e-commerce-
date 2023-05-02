@@ -26,12 +26,12 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public Account create( String name, String email, String password, double balance, String phone) {
-		boolean value = av.accountverification(name, email, password, phone,balance);
-		if(value == false) {
-			throw new RuntimeException("Os valores postos para criar a conta não são válidos");
+	public Account create(Account account) {
+		boolean value = av.accountValidation(account);
+		
+		if(!value) {
+			throw new IllegalArgumentException("Os valores postos para criar a conta não são válidos");
 		}
-		Account account = new Account(name, email, password, balance, phone);
 		return repository.save(account);
 	}
 

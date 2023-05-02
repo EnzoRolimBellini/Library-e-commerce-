@@ -10,7 +10,7 @@ import com.example.demo.model.Genre;
 public interface IBookService {
     List<Book> find();
     
-    Book create(int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title);
+    Book create(Book book);
     void update(UUID idBook ,int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title);
     void delete(UUID idBook);
 }

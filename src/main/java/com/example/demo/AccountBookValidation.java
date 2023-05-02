@@ -3,6 +3,8 @@ package com.example.demo;
 
 import java.time.LocalDateTime;
 
+import com.example.demo.model.Account;
+import com.example.demo.model.Book;
 import com.example.demo.model.Genre;
 
 public class AccountBookValidation {
@@ -14,10 +16,12 @@ public class AccountBookValidation {
 	private String regexPhone = ".{9,}"; 
     private Boolean validation;
    
-    public boolean accountverification(String name, String email, String password, String phone, double balance) {
+   
+
+	public  Boolean accountValidation(Account account) {
     	
     	
-    	if(name.matches(regexName) && email.matches(regexEmail) && password.matches(regexPassword) && phone.matches(regexPhone) && balance >= 0) {
+    	if(account.getName().matches(regexName) && account.getEmail().matches(regexEmail) && account.getPassword().matches(regexPassword) && account.getPhone().matches(regexPhone) && account.getBalance() >= 0) {
     	     this.validation = true;	
     	}else {
     		 this.validation = false;
@@ -26,8 +30,8 @@ public class AccountBookValidation {
     	return validation;
     }
     
-    public boolean bookverification(int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title) {
-    	if(numberPages > 0 && author.matches(regexName) &&  editor.matches(regexName) && price > 0 && title.matches(regexName) && !title.isBlank() ) {
+    public  Boolean bookValidation(Book book) {
+    	if(book.getNumberPages() > 0 && book.getAuthor().matches(regexName) &&  book.getEditor().matches(regexName) && book.getPrice() > 0 && book.getTitle().matches(regexName) && !book.getTitle().isBlank() ) {
     		this.validation = true;
     	}else {
     		this.validation = false;
