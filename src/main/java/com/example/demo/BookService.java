@@ -27,17 +27,17 @@ public class BookService implements IBookService {
 	}
 
 	@Override
-	public Book create(int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title) {
-		boolean value = av.bookverification(numberPages, author, genre, editor, date, price, title);
+	public Book create(int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title) {
+		boolean value = av.bookverification(numberPages, author, genre, editor, registrationDate, price, title);
 		if(value == false) {
 			throw new RuntimeException("Os dados do livro não estão corretos");
 		}
-		Book book = new Book(numberPages, author, genre, editor, date, price, title);
+		Book book = new Book();
 		return repository.save(book);
 	}
 
 	@Override
-	public void update(UUID idBook,int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title ) {
+	public void update(UUID idBook,int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title ) {
 			Optional<Book> containBookValue = repository.findById(idBook);
 
 		

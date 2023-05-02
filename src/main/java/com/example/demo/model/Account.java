@@ -15,6 +15,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,8 @@ public class Account {
 	 private double balance;
 	 @Column(name ="phone", nullable = false, unique = true)
 	 private String phone; 
+	 @Column(name = "date", nullable = false)
+	 private LocalDateTime registrationDate;
 	 
 	 //método construtor
 	public Account(String name, String email, String password, double balance, String phone) {
@@ -53,16 +56,28 @@ public class Account {
 		this.phone = phone;
 	} 
 	 
-	 // métodos de set para os dados dos usuários
+	 // getters e setters
+	
+	public UUID getIdAccount() {
+			return idAccount;
+		}
 	
 	public void setAccount(UUID idAccount) {
 		this.idAccount = idAccount;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public void setName( String name) {
 			this.name = name;
 	}
 	 
+	public String getEmail() {
+		return email;
+	}
+	
 	public void setEmail(String email) {
 		Boolean regexGmailCom = email.contains("@gmail.com");
 		Boolean regexGmailComBr = email.contains("@gmail.com.br");
@@ -73,6 +88,10 @@ public class Account {
 		 }else {
 			 System.out.println("Você não colocou a escrita do email de forma correta");
 		 }
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 	
 	public void setPassword(String password) {
@@ -87,6 +106,11 @@ public class Account {
 		 System.out.println("Sua senha deu errado");
 	  }
 	} 
+	 
+	 
+	 public String getPhone() {
+		return phone;
+	 }
 	
 	 public void setPhone(String phone) {
 		 Boolean regexPhone = phone.matches(".{9,}");
@@ -99,31 +123,33 @@ public class Account {
 			 }
 	 }
 	 
-	 // fim dos métodos de set
 	 
-	 //inicio dos metodos get
-	 
-	    public UUID getAccount() {
-			return this.idAccount;
+	 public List<Book> getArrayBooks() {
+			return arrayBooks;
 		}   
 	 
-	 	public String getName() {
-	 		return this.name;
-	 	}
-	 	
-	 	public String getEmail() {
-	 		return this.email;
-	 	}
-	 	
-	 	public String getPhone() {
-	 		return this.phone;
-	 	}
-	 	
-	 	public String getPassword() {
-	 		return this.password;
-	 	}
-	 	
-	 //fim dos metodos get
+
+	 public void setArrayBooks(List<Book> arrayBooks) {
+			this.arrayBooks = arrayBooks;
+		}
+
+	 public double getBalance() {
+			return balance;
+		}	
+
+	 public void setBalance(double balance) {
+			this.balance = balance;
+		}	
+
+	 public LocalDateTime getRegistrationDate() {
+			return registrationDate;
+		}
+
+	 public void setRegistrationDate(LocalDateTime registrationDate) {
+			this.registrationDate = registrationDate;
+		}
+	 
+	 //fim dos metodos getters  e setters
 	 
 	// métodos de verificar valores
 	 
@@ -138,6 +164,8 @@ public class Account {
 			}
 	} 
 	
+	
+
 	public boolean verifyPassword(String password) {
 		Boolean regexPassword = password.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()]).{8,}$");
 		

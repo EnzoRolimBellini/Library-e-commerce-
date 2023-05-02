@@ -39,7 +39,7 @@ public class Book   {
 	@Column(name = "editor", nullable = false)
 	 private String editor;
 	@Column(name = "date", nullable = false)
-	 private LocalDateTime date;
+	 private LocalDateTime registrationDate;
 	@Column(name = "description")
 	 private String description;
 	@Column(name = "price", nullable = false)
@@ -56,18 +56,7 @@ public class Book   {
 	@ManyToMany(mappedBy = "arrayBooks")
 	 private List<Account> arrayAccounts;
 	
-	
-	 
-	 public Book(int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title){
-		 this.numberPages = numberPages;
-		 this.author = author;
-		 this.genre = genre;
-		 this.editor = editor;
-		 this.date = date;
-		 this.title = title;
-		 
-	 }
-	  
+	// getters and setters
 	 
 	 public String getAuthor() {
 		 return author;
@@ -110,11 +99,11 @@ public class Book   {
 	}
 
 	public LocalDateTime getDate() {
-		return date;
+		return registrationDate;
 	}
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
+	public void setDate(LocalDateTime registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 	public String getDescription() {
@@ -161,6 +150,8 @@ public class Book   {
 		this.notes = notes;
 	}
 
+	//end of getters and setters
+	
 	public void createNote() {
 		 
 			 String noteEvaluation = null;

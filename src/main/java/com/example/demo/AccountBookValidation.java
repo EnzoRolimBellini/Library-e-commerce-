@@ -26,7 +26,7 @@ public class AccountBookValidation {
     	return validation;
     }
     
-    public boolean bookverification(int numberPages, String author, Genre genre, String editor, LocalDateTime date, double price, String title) {
+    public boolean bookverification(int numberPages, String author, Genre genre, String editor, LocalDateTime registrationDate, double price, String title) {
     	if(numberPages > 0 && author.matches(regexName) &&  editor.matches(regexName) && price > 0 && title.matches(regexName) && !title.isBlank() ) {
     		this.validation = true;
     	}else {
