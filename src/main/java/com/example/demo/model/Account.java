@@ -1,10 +1,10 @@
 package com.example.demo.model;
 
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,13 +27,12 @@ public class Account {
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column(name ="idaccount")
 	 private UUID idAccount;
-	 @Column(name = "books_fk", length = 300)
 	 @ManyToMany
-	 @JoinTable(name = "accounts_books",
-	            joinColumns = @JoinColumn(name = "accounts_fk", referencedColumnName = "idAccount" ),
-	            inverseJoinColumns = @JoinColumn(name = "books_fk", referencedColumnName = "idBook")
+	 @JoinTable(name = "accounts_books_table",
+	            joinColumns = {@JoinColumn(name = "accounts_id", referencedColumnName = "idAccount" )},
+	            inverseJoinColumns = {@JoinColumn(name = "books_id", referencedColumnName = "idBook")}
                )	           
-	 private List<Book> arrayBooks;
+	 private Set<Book> arrayBooks;
 	 @Column(name = "name", nullable = false)
 	 private String name;
 	 @Column(name ="email", nullable = false, unique = true)
@@ -116,12 +115,12 @@ public class Account {
 	 }
 	 
 	 
-	 public List<Book> getArrayBooks() {
+	 public Set<Book> getArrayBooks() {
 			return arrayBooks;
 		}   
 	 
 
-	 public void setArrayBooks(List<Book> arrayBooks) {
+	 public void setArrayBooks(Set<Book> arrayBooks) {
 			this.arrayBooks = arrayBooks;
 		}
 
@@ -215,11 +214,12 @@ public class Account {
 		
 		
 	//método que retorna em ordem alfabética a lista de livros do úsuario
+		/*
 		public HashMap<Book, String> getLibrary(Book l) {
 			
 			HashMap<Book, String> books = new HashMap<>();
 			
-			if(l.getTitle() != null && l.getGenre() != null && l.getEditor() != null && l.getDate() != null && l.getPrice() != 0) {		
+			if(l.getTitle() != null &&  l.getEditor() != null && l.getDate() != null && l.getPrice() != 0) {		
 					arrayBooks.add(l);
 			}else {
 				System.out.println("Esse livro não possui todos os dados");
@@ -233,6 +233,7 @@ public class Account {
 			
 			return books;
 		}
+		*/
 	 //fim do método que retorna em ordem alfabética os livros da conta	
 	
 	

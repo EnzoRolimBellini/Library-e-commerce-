@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -33,9 +34,6 @@ public class Book   {
 	 private String author;
 	@Column(name = "numberPages", nullable = false)
 	 private int numberPages;
-	@Column(name = "genre", nullable = false)
-	@Enumerated(EnumType.STRING)
-	 private Genre genre;
 	@Column(name = "editor", nullable = false)
 	 private String editor;
 	@Column(name = "date", nullable = false)
@@ -52,9 +50,8 @@ public class Book   {
 	 private String isbn10;
 	@Column(name = "dimensions")
 	 private String dimensions;
-	@Column(name = "fk_accounts")
 	@ManyToMany(mappedBy = "arrayBooks")
-	 private List<Account> arrayAccounts;
+	 private Set<Account> arrayAccounts;
 	
 	// getters and setters
 	 
@@ -81,15 +78,7 @@ public class Book   {
 	public void setNumberPages(int numberPages) {
 		this.numberPages = numberPages;
 	}
-
-	public Genre getGenre() {
-		return genre;
-	}
-
-	public void setGenre(Genre genre) {
-		this.genre = genre;
-	}
-
+	
 	public String getEditor() {
 		return editor;
 	}

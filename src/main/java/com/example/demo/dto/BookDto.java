@@ -1,10 +1,9 @@
-package com.example.demo;
+package com.example.demo.dto;
 
 
-import com.example.demo.model.Genre;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
+
 import jakarta.validation.constraints.NotBlank;
 
 public class BookDto {
@@ -12,9 +11,6 @@ public class BookDto {
 	     private String author;
          @NotBlank
 		 private int numberPages;
-         @NotBlank	
-		 @Enumerated(EnumType.STRING)
-		 private Genre genre;
          @NotBlank	
 		 private String editor;
          @NotBlank	
@@ -39,12 +35,7 @@ public class BookDto {
 		public void setNumberPages(int numberPages) {
 			this.numberPages = numberPages;
 		}
-		public Genre getGenre() {
-			return genre;
-		}
-		public void setGenre(Genre genre) {
-			this.genre = genre;
-		}
+		
 		public String getEditor() {
 			return editor;
 		}
@@ -78,6 +69,6 @@ public class BookDto {
 		}
          
          
-         
+        
 
 }		 
