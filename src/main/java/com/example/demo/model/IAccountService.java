@@ -1,10 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.model;
 
 
 import java.util.List;
 import java.util.UUID;
-
-import com.example.demo.model.Account;
 
 
 public interface IAccountService {

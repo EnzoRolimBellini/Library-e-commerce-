@@ -15,6 +15,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,34 +24,35 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "books")
+@Table(name = "Book")
 public class Book   {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idBook")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_book")
 	 private UUID idBook;
-	@Column(name = "author", nullable = false)
+	@Column(name = "author", nullable = true)
 	 private String author;
-	@Column(name = "numberPages", nullable = false)
+	@Column(name = "number_pages", nullable = true)
 	 private int numberPages;
-	@Column(name = "editor", nullable = false)
+	@Column(name = "editor", nullable = true)
 	 private String editor;
-	@Column(name = "date", nullable = false)
+	@Column(name = "date", nullable = true)
 	 private LocalDateTime registrationDate;
 	@Column(name = "description")
 	 private String description;
-	@Column(name = "price", nullable = false)
+	@Column(name = "price", nullable = true)
 	 private double price;
 	@Column(name = "notes")
 	 private List<String> notes;
-	@Column(name = "title", nullable = false)
+	@Column(name = "title", nullable = true)
 	 private String title;
-	@Column(name = "isbn10", nullable = false, unique = true, length = 10)
+	@Column(name = "isbn10", nullable = true)
 	 private String isbn10;
 	@Column(name = "dimensions")
 	 private String dimensions;
-	@ManyToMany(mappedBy = "arrayBooks")
+	
+	@ManyToMany(mappedBy = "arrayBooks", fetch = FetchType.EAGER)
 	 private Set<Account> arrayAccounts;
 	
 	// getters and setters
@@ -140,7 +142,7 @@ public class Book   {
 	}
 
 	//end of getters and setters
-	
+	/*
 	public void createNote() {
 		 
 			 String noteEvaluation = null;
@@ -196,6 +198,6 @@ public class Book   {
 		this.notes.set(currentIndex, newText);	 
 	 }
 	 
-	
+	*/
 
 }

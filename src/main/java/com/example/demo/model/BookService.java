@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,8 +7,6 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.model.Book;
-import com.example.demo.repository.BookRepository;
 
 
 @Service
@@ -27,20 +25,12 @@ public class BookService implements IBookService {
 
 	@Override
 	public Book save(Book book) {
-		/*
-		AccountBookValidation av = new AccountBookValidation();
-		boolean value = av.bookValidation(book);
-		if(!value) {
-			throw new IllegalArgumentException();
-		} */
+		
 		return repository.save(book);
 	}
 
 	@Override
 	public void update(UUID idBook,int numberPages, String author, String editor, LocalDateTime registrationDate, double price, String title ) {
-			Optional<Book> containBookValue = repository.findById(idBook);
-
-		
 		
 	}
 

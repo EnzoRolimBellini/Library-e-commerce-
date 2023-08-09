@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.AccountDto;
-import com.example.demo.model.Account;
-import com.example.demo.service.AccountService;
-
 import jakarta.validation.Valid;
-
+/*
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/digital-book")
@@ -38,3 +34,4 @@ public class AccountController {
 	}
 	
 }
+*/
